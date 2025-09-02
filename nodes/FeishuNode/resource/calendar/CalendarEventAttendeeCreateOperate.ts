@@ -73,7 +73,7 @@ export default {
 	async call(this: IExecuteFunctions, index: number): Promise<IDataObject> {
 		const calendarId = this.getNodeParameter('calendar_id', index) as string;
 		const eventId = this.getNodeParameter('event_id', index) as string;
-		const attendees = NodeUtils.getNodeJsonData(this, "attendees", index) as IDataObject[];
+
 		const needNotification = this.getNodeParameter('need_notification', index, true) as boolean;
 		const instanceStartTimeAdmin = this.getNodeParameter('instance_start_time_admin', index, '') as string;
 		const isEnableAdmin = this.getNodeParameter('is_enable_admin', index, false) as boolean;
@@ -88,9 +88,22 @@ export default {
 
 		const body: IDataObject = {};
 
-		if (attendees && attendees.length > 0) {
-			body.attendees = attendees;
-		}
+let attendeesRaw = this.getNodeParameter('attendees', index, '[]') as string | IDataObject[];
+let attendees: IDataObject[] = [];
+
+if (typeof attendeesRaw === 'string') {
+	try {
+		attendees = JSON.parse(attendeesRaw);
+	} catch (error) {
+		throw new Error(`attendees 字段不是合法 JSON: ${attendeesRaw}`);
+	}
+} else if (Array.isArray(attendeesRaw)) {
+	attendees = attendeesRaw;
+}
+
+if (attendees.length > 0) {
+	body.attendees = attendees;
+}
 
 		body.need_notification = needNotification;
 
