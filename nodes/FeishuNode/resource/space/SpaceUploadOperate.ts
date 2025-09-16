@@ -90,7 +90,7 @@ export default  {
 		const parent_type = this.getNodeParameter('parent_type', index) as string;
 		const parent_node = this.getNodeParameter('parent_node', index) as string;
 		const fileFieldName = this.getNodeParameter('fileFieldName', index) as string;
-		const file = await NodeUtils.buildUploadFileData.call(this, fileFieldName) as any;
+		const file = await NodeUtils.buildUploadFileData.call(this, fileFieldName, index) as any;
 
 		const fileName = file_name ? file_name: file.options.filename;
 		if (!fileName){
