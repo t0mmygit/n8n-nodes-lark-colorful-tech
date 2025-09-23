@@ -1,6 +1,5 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import { ResourceOperations } from '../../../help/type/IResource';
-import NodeUtils from '../../../help/utils/NodeUtils';
 import RequestUtils from '../../../help/utils/RequestUtils';
 
 export default {
@@ -30,7 +29,8 @@ export default {
 			name: 'attendees',
 			type: 'json',
 			default: '[]',
-			description: '新增参与人列表。参考：https://open.feishu.cn/document/server-docs/calendar-v4/calendar-event-attendee/create#requestBody',
+			description:
+				'新增参与人列表。参考：https://open.feishu.cn/document/server-docs/calendar-v4/calendar-event-attendee/create#requestBody',
 		},
 		{
 			displayName: '是否发送通知',
@@ -43,7 +43,8 @@ export default {
 			name: 'instance_start_time_admin',
 			type: 'string',
 			default: '',
-			description: '要修改的重复日程实例的时间戳。仅用于修改重复日程中的某一实例，非重复日程无需填写。',
+			description:
+				'要修改的重复日程实例的时间戳。仅用于修改重复日程中的某一实例，非重复日程无需填写。',
 		},
 		{
 			displayName: '启用会议室管理员身份',
@@ -75,9 +76,17 @@ export default {
 		const eventId = this.getNodeParameter('event_id', index) as string;
 
 		const needNotification = this.getNodeParameter('need_notification', index, true) as boolean;
-		const instanceStartTimeAdmin = this.getNodeParameter('instance_start_time_admin', index, '') as string;
+		const instanceStartTimeAdmin = this.getNodeParameter(
+			'instance_start_time_admin',
+			index,
+			'',
+		) as string;
 		const isEnableAdmin = this.getNodeParameter('is_enable_admin', index, false) as boolean;
-		const addOperatorToAttendee = this.getNodeParameter('add_operator_to_attendee', index, false) as boolean;
+		const addOperatorToAttendee = this.getNodeParameter(
+			'add_operator_to_attendee',
+			index,
+			false,
+		) as boolean;
 		const userIdType = this.getNodeParameter('user_id_type', index, 'open_id') as string;
 
 		const qs: IDataObject = {};
@@ -88,22 +97,22 @@ export default {
 
 		const body: IDataObject = {};
 
-let attendeesRaw = this.getNodeParameter('attendees', index, '[]') as string | IDataObject[];
-let attendees: IDataObject[] = [];
+		let attendeesRaw = this.getNodeParameter('attendees', index, '[]') as string | IDataObject[];
+		let attendees: IDataObject[] = [];
 
-if (typeof attendeesRaw === 'string') {
-	try {
-		attendees = JSON.parse(attendeesRaw);
-	} catch (error) {
-		throw new Error(`attendees 字段不是合法 JSON: ${attendeesRaw}`);
-	}
-} else if (Array.isArray(attendeesRaw)) {
-	attendees = attendeesRaw;
-}
+		if (typeof attendeesRaw === 'string') {
+			try {
+				attendees = JSON.parse(attendeesRaw);
+			} catch (error) {
+				throw new Error(`attendees 字段不是合法 JSON: ${attendeesRaw}`);
+			}
+		} else if (Array.isArray(attendeesRaw)) {
+			attendees = attendeesRaw;
+		}
 
-if (attendees.length > 0) {
-	body.attendees = attendees;
-}
+		if (attendees.length > 0) {
+			body.attendees = attendees;
+		}
 
 		body.need_notification = needNotification;
 

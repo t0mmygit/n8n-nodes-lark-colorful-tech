@@ -29,7 +29,7 @@ const SpreadsheetValuesAppendOperate: ResourceOperations = {
 			name: 'values',
 			type: 'json',
 			required: true,
-			default: '',
+			default: '[["第一行1","第一行2"]，["第二行1","第二行2"]]',
 			description: '参考：https://open.feishu.cn/document/ukTMukTMukTM/ugjN1UjL4YTN14CO2UTN',
 		},
 		{

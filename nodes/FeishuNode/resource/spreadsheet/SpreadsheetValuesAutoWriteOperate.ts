@@ -28,8 +28,7 @@ const SpreadsheetValuesWriteOperate: ResourceOperations = {
 			name: 'values',
 			type: 'json',
 			required: true,
-			default: '[]',
-			description: '一个对象一条数据，key值是表头名称',
+			default: '[["第一行1","第一行2"]，["第二行1","第二行2"]]',
 		},
 		{
 			displayName: '开始行数',
@@ -37,20 +36,12 @@ const SpreadsheetValuesWriteOperate: ResourceOperations = {
 			type: 'number',
 			required: true,
 			default: 1,
-		},
-		{
-			displayName: '是否显示表头',
-			name: 'showHeader',
-			type: 'boolean',
-			required: true,
-			default: true,
-		},
+		}
 	],
 	async call(this: IExecuteFunctions, index: number): Promise<IDataObject> {
 		const spreadsheetToken = this.getNodeParameter('spreadsheetToke', index) as string;
 		const sheetId = this.getNodeParameter('sheetId', index) as string;
 		const startLine = this.getNodeParameter('startLine', index) as number;
-		const showHeader = this.getNodeParameter('showHeader', index) as boolean;
 		const values = nodeUtils.getNodeJsonData(this, 'values', index) as IDataObject[];
 
 		if (!Array.isArray(values) || values.length === 0) {
@@ -69,25 +60,19 @@ const SpreadsheetValuesWriteOperate: ResourceOperations = {
 			return column;
 		}
 
-		const headers = Object.keys(values[0]);
+		const headers = Object.values(values[0]);
 		// 使用headers 获取长度 A-Z AA-ZZ AAA-ZZZ
 		const maxColumnHeader = getColumnHeader(headers.length);
 
-		const range = `${sheetId}!A${startLine}:${maxColumnHeader}${startLine + values.length}`;
-
-		let valuesWithHeader = []
-		if (showHeader){
-			valuesWithHeader = [headers, ...values.map((item) => headers.map((header) => item[header]))];
-		}else{
-			valuesWithHeader = values.map((item) => Object.values(item));
-		}
+		const range = `${sheetId}!A${startLine}:${maxColumnHeader}${startLine - 1 + values.length }`;
 
 		const body: IDataObject = {
 			valueRange: {
 				range,
-				valuesWithHeader,
+				values: values,
 			},
 		};
+		console.log('body', JSON.stringify(body));
 
 		const response = await RequestUtils.request.call(this, {
 			method: 'PUT',

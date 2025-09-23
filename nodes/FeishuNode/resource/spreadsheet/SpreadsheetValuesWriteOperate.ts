@@ -29,7 +29,7 @@ const SpreadsheetValuesWriteOperate: ResourceOperations = {
 			name: 'values',
 			type: 'json',
 			required: true,
-			default: '[]',
+			default: '[["第一行1","第一行2"]，["第二行1","第二行2"]]',
 			description: '参考：https://open.feishu.cn/document/server-docs/docs/sheets-v3/data-types-supported-by-sheets',
 		},
 	],
