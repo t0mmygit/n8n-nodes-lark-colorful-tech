@@ -72,7 +72,6 @@ const SpreadsheetValuesWriteOperate: ResourceOperations = {
 				values: values,
 			},
 		};
-		console.log('body', JSON.stringify(body));
 
 		const response = await RequestUtils.request.call(this, {
 			method: 'PUT',

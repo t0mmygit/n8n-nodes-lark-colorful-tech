@@ -1,11 +1,11 @@
 import {
+	IAuthenticateGeneric,
 	ICredentialDataDecryptedObject,
 	ICredentialTestRequest,
 	ICredentialType,
 	IHttpRequestHelper,
 	INodeProperties,
 } from 'n8n-workflow';
-import { IHttpRequestOptions } from 'n8n-workflow/dist/Interfaces';
 
 export class FeishuCredentialsApi implements ICredentialType {
 	name = 'feishuCredentialsApi';
@@ -67,25 +67,34 @@ export class FeishuCredentialsApi implements ICredentialType {
 		return { accessToken: res.tenant_access_token };
 	}
 
-	async authenticate(
-		credentials: ICredentialDataDecryptedObject,
-		requestOptions: IHttpRequestOptions,
-	): Promise<IHttpRequestOptions> {
-		requestOptions.baseURL = `https://${credentials.baseUrl}`;
-		requestOptions.headers = {
-			...(requestOptions.headers || {}),
-			Authorization: 'Bearer ' + credentials.accessToken,
-		};
-		// console.log('authenticate requestOptions:', requestOptions);
-		// requestOptions.proxy = {
-		// 	host: '127.0.0.1',
-		// 	port: 8000,
-		// 	protocol: 'http',
-		// };
-		// requestOptions.skipSslCertificateValidation = true;
+	// async authenticate(
+	// 	credentials: ICredentialDataDecryptedObject,
+	// 	requestOptions: IHttpRequestOptions,
+	// ): Promise<IHttpRequestOptions> {
+	// 	requestOptions.baseURL = `https://${credentials.baseUrl}`;
+	// 	requestOptions.headers = {
+	// 		...(requestOptions.headers || {}),
+	// 		Authorization: 'Bearer ' + credentials.accessToken,
+	// 	};
+	// 	// console.log('authenticate requestOptions:', requestOptions);
+	// 	// requestOptions.proxy = {
+	// 	// 	host: '127.0.0.1',
+	// 	// 	port: 8000,
+	// 	// 	protocol: 'http',
+	// 	// };
+	// 	// requestOptions.skipSslCertificateValidation = true;
+	//
+	// 	return requestOptions;
+	// }
 
-		return requestOptions;
-	}
+	authenticate: IAuthenticateGeneric = {
+		type: 'generic',
+		properties: {
+			headers: {
+				Authorization: '=Bearer {{$credentials.accessToken}}',
+			},
+		},
+	};
 
 	// The block below tells how this credential can be tested
 	test: ICredentialTestRequest = {

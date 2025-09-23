@@ -9,6 +9,8 @@ class RequestUtils {
 	) {
 		const credentials = await this.getCredentials('feishuCredentialsApi');
 
+		options.baseURL = `https://${credentials.baseUrl}`;
+
 		return this.helpers.requestWithAuthentication
 			.call(this, 'feishuCredentialsApi', options, {
 				// @ts-ignore
