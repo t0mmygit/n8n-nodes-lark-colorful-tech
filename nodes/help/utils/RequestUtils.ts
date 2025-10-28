@@ -1,14 +1,13 @@
-import { IExecuteFunctions } from 'n8n-workflow';
+import { IExecuteFunctions, IRequestOptions } from 'n8n-workflow';
 import {
 	IAdditionalCredentialOptions,
-	IHttpRequestOptions,
 	IOAuth2Options,
 } from 'n8n-workflow/dist/esm/interfaces';
 
 class RequestUtils {
 	static async originRequest(
 		this: IExecuteFunctions,
-		options: IHttpRequestOptions,
+		options: IRequestOptions,
 		clearAccessToken = false,
 	) {
 		let authentication = this.getNodeParameter('authentication', 0) as string;
@@ -19,6 +18,8 @@ class RequestUtils {
 
 		if (authentication === 'feishuCredentialsApi') {
 			const credentials = await this.getCredentials(authentication);
+
+			console.log('credentials.accessToken', credentials.accessToken);
 
 			options.baseURL = `https://${credentials.baseUrl}`;
 
@@ -35,16 +36,19 @@ class RequestUtils {
 
 			options.baseURL = `https://open.feishu.cn`;
 
-			additionalCredentialOptions.oauth2 = {
+			let oauth2 = {
 				keepBearer: true
 			} as IOAuth2Options
+
+			return this.helpers.requestOAuth2
+				.call(this, authentication, options, oauth2)
 		}
 
-		return this.helpers.httpRequestWithAuthentication
+		return this.helpers.requestWithAuthentication
 			.call(this, authentication, options, additionalCredentialOptions)
 	}
 
-	static async request(this: IExecuteFunctions, options: IHttpRequestOptions) {
+	static async request(this: IExecuteFunctions, options: IRequestOptions) {
 		if (options.json === undefined) options.json = true;
 
 		return RequestUtils.originRequest.call(this, options).then((data) => {

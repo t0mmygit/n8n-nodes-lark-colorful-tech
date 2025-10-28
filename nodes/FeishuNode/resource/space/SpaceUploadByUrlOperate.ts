@@ -114,7 +114,7 @@ export default {
 		return RequestUtils.request.call(this, {
 			method: 'POST',
 			url: `/open-apis/drive/v1/medias/upload_all`,
-			body: formData,
+			formData: formData,
 		});
 	},
 
