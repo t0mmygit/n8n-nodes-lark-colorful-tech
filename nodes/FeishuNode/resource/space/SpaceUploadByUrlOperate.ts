@@ -1,6 +1,7 @@
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
+import FormData from 'form-data';
 
 export default {
 	name: '上传素材通过Url',
@@ -102,16 +103,20 @@ export default {
 		}
 		const file = Buffer.concat(chunks);
 
+		const formData = new FormData();
+		formData.append('file_name', file_name);
+		formData.append('parent_type', parent_type);
+		formData.append('parent_node', parent_node);
+		formData.append('size', file.byteLength);
+		formData.append('file', file, { contentType: "image/png", filename:  file_name});
+
+
 		return RequestUtils.request.call(this, {
 			method: 'POST',
 			url: `/open-apis/drive/v1/medias/upload_all`,
-			formData: {
-				file_name: file_name,
-				parent_type,
-				parent_node,
-				size: file.byteLength,
-				file: file
-			},
+			body: formData,
 		});
 	},
+
+
 } as ResourceOperations;

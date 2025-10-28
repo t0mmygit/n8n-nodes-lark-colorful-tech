@@ -14,6 +14,7 @@ export class FeishuNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Feishu Node',
 		name: 'feishuNode',
+		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		// eslint-disable-next-line n8n-nodes-base/node-class-description-icon-not-svg
 		icon: 'file:icon.png',
 		group: ['transform'],
@@ -30,10 +31,44 @@ export class FeishuNode implements INodeType {
 		credentials: [
 			{
 				name: 'feishuCredentialsApi',
+				displayName: "应用级别凭证",
 				required: true,
+				displayOptions: {
+					show: {
+						authentication: ['feishuCredentialsApi'],
+					},
+				},
+			},
+			{
+				name: 'feishuOauth2Api',
+				displayName: "用户级别凭证",
+				required: true,
+				displayOptions: {
+					show: {
+						authentication: ['feishuOauth2Api'],
+					},
+				},
 			},
 		],
-		properties: resourceBuilder.build(),
+		properties: [
+			{
+				displayName: '凭证类型',
+				name: 'authentication',
+				type: 'options',
+				options: [
+					{
+						name: '用户级别凭证',
+						value: 'feishuOauth2Api',
+					},
+					{
+						name: '应用级别凭证',
+						value: 'feishuCredentialsApi',
+					},
+				],
+				default: 'feishuCredentialsApi',
+			},
+			...resourceBuilder.build()
+		],
 	};
 
 	// The function below is responsible for actually doing whatever this node
