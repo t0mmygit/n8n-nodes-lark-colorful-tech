@@ -55,6 +55,18 @@ export class FeishuNode implements INodeType {
 			throw new NodeOperationError(this.getNode(), '未实现方法: ' + resource + '.' + operation);
 		}
 
+		// 聚合
+		if (operation.includes("aggregate")){
+			responseData = await callFunc.call(this, 0);
+			const executionData = this.helpers.constructExecutionMetaData(
+				this.helpers.returnJsonArray(responseData as IDataObject),
+				{ itemData: { item: 0 } },
+			);
+			returnData.push(...executionData);
+
+			return [returnData];
+		}
+
 		// Iterates over all input items and add the key "myString" with the
 		// value the parameter "myString" resolves to.
 		// (This could be a different value for each item in case it contains an expression)

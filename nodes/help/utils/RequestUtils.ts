@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { IRequestOptions } from 'n8n-workflow/dist/Interfaces';
+import { IRequestOptions } from 'n8n-workflow';
 
 class RequestUtils {
 	static async originRequest(
