@@ -19,9 +19,9 @@ export class FeishuNode implements INodeType {
 		icon: 'file:icon.png',
 		group: ['transform'],
 		version: 1,
-		description: 'Feishu Node',
+		description: 'Lark Custom Node',
 		defaults: {
-			name: 'Feishu Node',
+			name: 'Lark Custom Node',
 		},
 		usableAsTool: true,
 		// @ts-ignore
@@ -91,7 +91,7 @@ export class FeishuNode implements INodeType {
 		}
 
 		// 聚合
-		if (operation.includes("aggregate")){
+		if (operation.includes("aggregate")) {
 			responseData = await callFunc.call(this, 0);
 			const executionData = this.helpers.constructExecutionMetaData(
 				this.helpers.returnJsonArray(responseData as IDataObject),
@@ -129,7 +129,7 @@ export class FeishuNode implements INodeType {
 					let errorJson = {
 						error: error.message
 					}
-					if (error.name === 'NodeApiError'){
+					if (error.name === 'NodeApiError') {
 						errorJson.error = error?.cause?.error
 					}
 
@@ -138,9 +138,9 @@ export class FeishuNode implements INodeType {
 						pairedItem: itemIndex,
 					});
 					continue;
-				}else if (error.name === 'NodeApiError'){
+				} else if (error.name === 'NodeApiError') {
 					throw error
-				}else {
+				} else {
 					throw new NodeOperationError(this.getNode(), error, {
 						message: error.message,
 						itemIndex,

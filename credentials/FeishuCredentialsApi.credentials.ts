@@ -17,18 +17,18 @@ export class FeishuCredentialsApi implements ICredentialType {
 			displayName: 'Base URL',
 			name: 'baseUrl',
 			type: 'string',
-			default: 'open.feishu.cn',
+			default: 'open.larksuite.com',
 			required: true,
 		},
 		{
-			displayName: 'Appid',
+			displayName: 'App ID',
 			description: '开放平台应用的唯一标识。可以在开发者后台的 凭证与基础信息 页面查看 app_id',
 			name: 'appid',
 			type: 'string',
 			default: '',
 		},
 		{
-			displayName: 'AppSecret',
+			displayName: 'App Secret',
 			name: 'appsecret',
 			description: '应用的秘钥',
 			type: 'string',
@@ -38,7 +38,7 @@ export class FeishuCredentialsApi implements ICredentialType {
 			default: '',
 		},
 		{
-			displayName: 'AccessToken',
+			displayName: 'Access Token',
 			name: 'accessToken',
 			type: 'hidden',
 			default: '',
@@ -66,26 +66,6 @@ export class FeishuCredentialsApi implements ICredentialType {
 
 		return { accessToken: res.tenant_access_token };
 	}
-
-	// async authenticate(
-	// 	credentials: ICredentialDataDecryptedObject,
-	// 	requestOptions: IHttpRequestOptions,
-	// ): Promise<IHttpRequestOptions> {
-	// 	requestOptions.baseURL = `https://${credentials.baseUrl}`;
-	// 	requestOptions.headers = {
-	// 		...(requestOptions.headers || {}),
-	// 		Authorization: 'Bearer ' + credentials.accessToken,
-	// 	};
-	// 	// console.log('authenticate requestOptions:', requestOptions);
-	// 	// requestOptions.proxy = {
-	// 	// 	host: '127.0.0.1',
-	// 	// 	port: 8000,
-	// 	// 	protocol: 'http',
-	// 	// };
-	// 	// requestOptions.skipSslCertificateValidation = true;
-	//
-	// 	return requestOptions;
-	// }
 
 	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
