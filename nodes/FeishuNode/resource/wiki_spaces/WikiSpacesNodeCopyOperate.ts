@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const WikiSpacesNodeCopyOperate: ResourceOperations = {
-	name: '创建知识空间节点副本',
+	name: 'Copy Wiki Space Node',
 	value: 'wiki:spaces:node:copy',
 	order: 90,
 	options: [

@@ -1,6 +1,6 @@
-import {ResourceOptions} from "../../help/type/IResource";
+import { ResourceOptions } from "../../help/type/IResource";
 
-export default{
-	name: '任务',
+export default {
+	name: 'Task',
 	value: 'task',
 } as ResourceOptions;

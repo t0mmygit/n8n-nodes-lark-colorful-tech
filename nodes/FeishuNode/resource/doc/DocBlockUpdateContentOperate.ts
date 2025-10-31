@@ -4,7 +4,7 @@ import { ResourceOperations } from '../../../help/type/IResource';
 import NodeUtils from "../../../help/utils/NodeUtils";
 
 const DocBlockUpdateContentOperate: ResourceOperations = {
-	name: '更新块的内容',
+	name: 'Update Document Block Content',
 	value: 'doc:block:updateContent',
 	options: [
 		{

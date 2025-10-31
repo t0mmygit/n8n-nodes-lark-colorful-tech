@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const WikiSpacesNodeGetChildrenOperate: ResourceOperations = {
-	name: '获取知识空间子节点列表',
+	name: 'Get Wiki Space Node Childen',
 	value: 'wiki:spaces:node:children',
 	order: 90,
 	options: [

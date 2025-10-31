@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const WikiSpacesNodeUpdateTitleOperate: ResourceOperations = {
-	name: '更新知识空间节点标题',
+	name: 'Update Wiki Space Node Title',
 	value: 'wiki:spaces:node:updateTitle',
 	order: 90,
 	options: [

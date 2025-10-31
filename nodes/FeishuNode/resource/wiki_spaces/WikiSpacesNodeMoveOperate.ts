@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const WikiSpacesNodeMoveOperate: ResourceOperations = {
-	name: '移动知识空间节点',
+	name: 'Move Wiki Space Node',
 	value: 'wiki:spaces:node:move',
 	order: 90,
 	options: [

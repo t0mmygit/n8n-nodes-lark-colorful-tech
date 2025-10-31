@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const WikiSpacesDeleteMemberOperate: ResourceOperations = {
-	name: '删除知识空间成员',
+	name: 'Delete Wiki Space Members',
 	value: 'wiki:spaces:members:delete',
 	order: 97,
 	options: [

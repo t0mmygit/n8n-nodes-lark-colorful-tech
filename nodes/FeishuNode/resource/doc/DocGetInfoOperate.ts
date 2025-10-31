@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const DocGetInfoOperate: ResourceOperations = {
-	name: '获取文档基本信息',
+	name: 'Get Document Info',
 	value: 'doc:getInfo',
 	options: [
 		{

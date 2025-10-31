@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const DocCreateOperate: ResourceOperations = {
-	name: '创建文档',
+	name: 'Create Document',
 	value: 'doc:create',
 	options: [
 		{

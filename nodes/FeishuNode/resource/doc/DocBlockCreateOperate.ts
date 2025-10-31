@@ -4,7 +4,7 @@ import { ResourceOperations } from '../../../help/type/IResource';
 import NodeUtils from "../../../help/utils/NodeUtils";
 
 const DocBlockCreateOperate: ResourceOperations = {
-	name: '创建块',
+	name: 'Create Document Block',
 	value: 'doc:block:create',
 	options: [
 		{

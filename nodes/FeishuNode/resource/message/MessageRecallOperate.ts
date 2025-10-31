@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const MessageRecallOperate: ResourceOperations = {
-	name: '撤回消息',
+	name: 'Recall Message',
 	value: 'message:recall',
 	options: [
 		{

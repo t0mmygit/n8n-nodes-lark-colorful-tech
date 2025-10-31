@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const MessageReplyOperate: ResourceOperations = {
-	name: '回复消息',
+	name: 'Reply Message',
 	value: 'message:reply',
 	options: [
 		{

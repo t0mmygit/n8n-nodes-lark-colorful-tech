@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const WikiSpacesAddMemberOperate: ResourceOperations = {
-	name: '添加知识空间成员',
+	name: 'Add Wiki Space Members',
 	value: 'wiki:spaces:members:add',
 	order: 95,
 	options: [

@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const DocGetAllBlocksOperate: ResourceOperations = {
-	name: '获取文档所有块',
+	name: 'Get all Document Blocks',
 	value: 'doc:getAllBlocks',
 	options: [
 		{

@@ -3,11 +3,11 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const DocGetRawContentOperate: ResourceOperations = {
-	name: '获取文档纯文本内容',
+	name: 'Get Document Raw Content',
 	value: 'doc:getRawContent',
 	options: [
 		{
-			displayName: '文档 ID',
+			displayName: 'Document ID',
 			name: 'document_id',
 			type: 'string',
 			required: true,

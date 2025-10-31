@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const MessageForwardOperate: ResourceOperations = {
-	name: '转发消息',
+	name: 'Forward Message',
 	value: 'message:forward',
 	options: [
 		{
@@ -77,7 +77,7 @@ const MessageForwardOperate: ResourceOperations = {
 			receive_id,
 		};
 
-		const qs : IDataObject = {
+		const qs: IDataObject = {
 			receive_id_type
 		}
 		if (uuid) {

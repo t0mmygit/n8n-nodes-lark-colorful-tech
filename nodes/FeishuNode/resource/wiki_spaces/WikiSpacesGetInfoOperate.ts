@@ -3,12 +3,12 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const WikiSpacesGetInfoOperate: ResourceOperations = {
-	name: '获取知识空间信息',
+	name: 'Get Wiki Space Info',
 	value: 'wiki:spaces:info',
 	order: 100,
 	options: [
 		{
-			displayName: '知识空间ID',
+			displayName: 'Space ID',
 			name: 'space_id',
 			type: 'string',
 			required: true,
@@ -16,7 +16,7 @@ const WikiSpacesGetInfoOperate: ResourceOperations = {
 			description: '知识空间ID，可从知识空间列表获取。',
 		},
 		{
-			displayName: '语言',
+			displayName: 'Language',
 			name: 'lang',
 			type: 'options',
 			// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
@@ -38,7 +38,7 @@ const WikiSpacesGetInfoOperate: ResourceOperations = {
 				{ name: '繁体中文（中国香港）', value: 'zh-HK' },
 				{ name: '繁体中文（中国台湾）', value: 'zh-TW' },
 			],
-			default: 'zh',
+			default: 'en',
 			description: '返回的文档库名称展示语言。',
 		}
 	],

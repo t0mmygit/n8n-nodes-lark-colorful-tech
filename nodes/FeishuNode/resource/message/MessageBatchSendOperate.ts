@@ -4,7 +4,7 @@ import { ResourceOperations } from '../../../help/type/IResource';
 import NodeUtils from "../../../help/utils/NodeUtils";
 
 const MessageBatchSendOperate: ResourceOperations = {
-	name: '批量发送消息',
+	name: 'Batch Send Message',
 	value: 'message:batchSend',
 	options: [
 		{

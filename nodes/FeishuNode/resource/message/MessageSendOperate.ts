@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const MessageSendOperate: ResourceOperations = {
-	name: '发送消息',
+	name: 'Send Message',
 	value: 'message:send',
 	options: [
 		{
