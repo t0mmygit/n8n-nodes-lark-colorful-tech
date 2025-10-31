@@ -60,7 +60,8 @@ jobs:
 
           # Commit inside the main worktree
           cd /tmp/branch-dist
-          git add dist package.json package-lock.json README.md
+          git add -f dist
+          git add package.json package-lock.json README.md
           git commit -m "Build from development: $(date -u +"%Y-%m-%d %H:%M:%S")" || echo "No changes to commit"
 
           # Pull and push to avoid non-fast-forward errors
