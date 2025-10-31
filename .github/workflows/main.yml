@@ -53,7 +53,7 @@ jobs:
 
           # Copy necessary build artifacts and metadata
           rm -rf /tmp/branch-dist/dist
-          cp -r ./dist /tmp/branch-main/dist
+          cp -r ./dist /tmp/branch-dist/dist
           cp package.json /tmp/branch-dist/package.json
           cp package-lock.json /tmp/branch-dist/package-lock.json || true
           cp README.md /tmp/branch-dist/README.md || true
