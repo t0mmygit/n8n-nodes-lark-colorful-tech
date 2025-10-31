@@ -1,0 +1,58 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const RequestUtils_1 = __importDefault(require("../../../help/utils/RequestUtils"));
+const SpreadsheetCellsMergeOperate = {
+    name: '合并单元格',
+    value: 'spreadsheet:mergeCells',
+    order: 80,
+    options: [
+        {
+            displayName: '电子表格 Token',
+            name: 'spreadsheetToke',
+            type: 'string',
+            required: true,
+            default: '',
+            description: '电子表格的 token。',
+        },
+        {
+            displayName: '单元格范围',
+            name: 'range',
+            type: 'string',
+            required: true,
+            default: '',
+            description: '要合并的单元格的范围，格式为 &lt;sheetId&gt;!&lt;开始位置&gt;:&lt;结束位置&gt;。',
+        },
+        {
+            displayName: '合并类型',
+            name: 'mergeType',
+            type: 'options',
+            options: [
+                { name: '合并所有单元格', value: 'MERGE_ALL' },
+                { name: '按行合并', value: 'MERGE_ROWS' },
+                { name: '按列合并', value: 'MERGE_COLUMNS' },
+            ],
+            required: true,
+            default: 'MERGE_ALL',
+            description: '指定合并单元格的方式。',
+        },
+    ],
+    async call(index) {
+        const spreadsheetToken = this.getNodeParameter('spreadsheetToke', index);
+        const range = this.getNodeParameter('range', index);
+        const mergeType = this.getNodeParameter('mergeType', index);
+        const body = {
+            range,
+            mergeType,
+        };
+        return RequestUtils_1.default.request.call(this, {
+            method: 'POST',
+            url: `/open-apis/sheets/v2/spreadsheets/${spreadsheetToken}/merge_cells`,
+            body,
+        });
+    },
+};
+exports.default = SpreadsheetCellsMergeOperate;
+//# sourceMappingURL=SpreadsheetCellsMergeOperate.js.map
