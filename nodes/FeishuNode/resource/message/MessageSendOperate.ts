@@ -7,7 +7,7 @@ const MessageSendOperate: ResourceOperations = {
 	value: 'message:send',
 	options: [
 		{
-			displayName: '用户ID类型',
+			displayName: 'Receive ID Type',
 			name: 'receive_id_type',
 			type: 'options',
 			// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
@@ -45,29 +45,29 @@ const MessageSendOperate: ResourceOperations = {
 			default: 'open_id',
 		},
 		{
-			displayName: '消息接收者的 ID',
+			displayName: 'Receive ID',
 			name: 'receive_id',
 			type: 'string',
 			default: '',
 			description: 'ID 类型与查询参数 receive_id_type 的取值一致。',
 		},
 		{
-			displayName: '消息类型',
+			displayName: 'Message Type',
 			name: 'msg_type',
 			type: 'options',
 			// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 			options: [
-				{ name: '文本', value: 'text' },
-				{ name: '富文本', value: 'post' },
-				{ name: '图片', value: 'image' },
-				{ name: '文件', value: 'file' },
-				{ name: '语音', value: 'audio' },
-				{ name: '视频', value: 'media' },
-				{ name: '表情包', value: 'sticker' },
-				{ name: '卡片', value: 'interactive' },
-				{ name: '分享群名片', value: 'share_chat' },
-				{ name: '分享个人名片', value: 'share_user' },
-				{ name: '系统消息', value: 'system' },
+				{ name: 'Text', value: 'text' },
+				{ name: 'Post', value: 'post' },
+				{ name: 'Image', value: 'image' },
+				{ name: 'File', value: 'file' },
+				{ name: 'Audio', value: 'audio' },
+				{ name: 'Media', value: 'media' },
+				{ name: 'Sticker', value: 'sticker' },
+				{ name: 'Interactive', value: 'interactive' },
+				{ name: 'Share Chat', value: 'share_chat' },
+				{ name: 'Share User', value: 'share_user' },
+				{ name: 'System', value: 'system' },
 			],
 			description:
 				'参考：https://open.feishu.cn/document/server-docs/im-v1/message-content-description/create_json',
@@ -75,7 +75,7 @@ const MessageSendOperate: ResourceOperations = {
 			default: 'text',
 		},
 		{
-			displayName: '消息内容',
+			displayName: 'Content',
 			name: 'content',
 			type: 'json',
 			default: '{"text":"test content"}',

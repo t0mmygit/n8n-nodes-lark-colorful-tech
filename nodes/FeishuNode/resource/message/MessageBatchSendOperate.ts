@@ -13,11 +13,11 @@ const MessageBatchSendOperate: ResourceOperations = {
 			type: 'options',
 			// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 			options: [
-				{ name: '文本', value: 'text' },
-				{ name: '图片', value: 'image' },
-				{ name: '富文本', value: 'post' },
-				{ name: '分享群名片', value: 'share_chat' },
-				{ name: '卡片', value: 'interactive' },
+				{ name: 'Text', value: 'text' },
+				{ name: 'Image', value: 'image' },
+				{ name: 'Post', value: 'post' },
+				{ name: 'Share Chat', value: 'share_chat' },
+				{ name: 'Interactive', value: 'interactive' },
 			],
 			description: '消息类型。',
 			required: true,
