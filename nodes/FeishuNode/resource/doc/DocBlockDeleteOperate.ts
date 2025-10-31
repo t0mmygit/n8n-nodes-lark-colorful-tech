@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const DocBlockDeleteOperate: ResourceOperations = {
-	name: '删除块',
+	name: 'Delete Document Block',
 	value: 'doc:block:delete',
 	options: [
 		{

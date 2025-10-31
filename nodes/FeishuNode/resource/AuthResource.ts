@@ -1,7 +1,7 @@
-import {ResourceOptions} from "../../help/type/IResource";
+import { ResourceOptions } from "../../help/type/IResource";
 
-export default{
-	name: '授权',
+export default {
+	name: 'Auth',
 	value: 'auth',
 } as ResourceOptions;
 

@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const MessageBatchRecallOperate: ResourceOperations = {
-	name: '批量撤回消息',
+	name: 'Batch recall message',
 	value: 'message:batchRecall',
 	options: [
 		{

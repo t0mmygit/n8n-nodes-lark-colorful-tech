@@ -3,19 +3,19 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const WikiSpacesGetListOperate: ResourceOperations = {
-	name: '获取知识空间列表',
+	name: 'Get Wiki Space List',
 	value: 'wiki:spaces:list',
 	order: 100,
 	options: [
 		{
-			displayName: '每页大小',
+			displayName: 'Page Size',
 			name: 'page_size',
 			type: 'number',
 			default: 20,
 			description: '分页大小，最大值50。',
 		},
 		{
-			displayName: '分页标记',
+			displayName: 'Page Token',
 			name: 'page_token',
 			type: 'string',
 			typeOptions: { password: true },
@@ -23,7 +23,7 @@ const WikiSpacesGetListOperate: ResourceOperations = {
 			description: '分页标记，第一次请求不填。',
 		},
 		{
-			displayName: '语言',
+			displayName: 'Language',
 			name: 'lang',
 			type: 'options',
 			// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
@@ -45,7 +45,7 @@ const WikiSpacesGetListOperate: ResourceOperations = {
 				{ name: '繁体中文（中国香港）', value: 'zh-HK' },
 				{ name: '繁体中文（中国台湾）', value: 'zh-TW' },
 			],
-			default: 'zh',
+			default: 'en',
 			description: '返回的文档库名称展示语言。',
 		}
 	],

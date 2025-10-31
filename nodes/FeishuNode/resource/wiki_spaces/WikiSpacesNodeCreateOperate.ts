@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const WikiSpacesNodeCreateOperate: ResourceOperations = {
-	name: '创建知识空间节点',
+	name: 'Create Wiki Space Node',
 	value: 'wiki:spaces:node:create',
 	order: 90,
 	options: [

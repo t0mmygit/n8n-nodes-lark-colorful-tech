@@ -3,19 +3,19 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const WikiSpacesUpdateSettingOperate: ResourceOperations = {
-	name: '更新知识空间设置',
+	name: 'Update Wiki Space Settings',
 	value: 'wiki:spaces:settings:update',
 	order: 98,
 	options: [
 		{
-			displayName: '知识空间ID',
+			displayName: 'Space ID',
 			name: 'space_id',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: '一级页面创建权限',
+			displayName: 'Create Setting',
 			name: 'create_setting',
 			type: 'options',
 			options: [

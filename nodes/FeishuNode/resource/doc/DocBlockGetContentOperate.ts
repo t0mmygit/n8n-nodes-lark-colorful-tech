@@ -3,11 +3,11 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const DocBlockGetContentOperate: ResourceOperations = {
-	name: '获取块的内容',
+	name: 'Get Document Block Content',
 	value: 'doc:block:getContent',
 	options: [
 		{
-			displayName: '文档 ID',
+			displayName: 'Document ID',
 			name: 'document_id',
 			type: 'string',
 			required: true,
@@ -15,21 +15,21 @@ const DocBlockGetContentOperate: ResourceOperations = {
 			description: '文档的唯一标识。',
 		},
 		{
-			displayName: '父块 ID',
+			displayName: 'Block ID',
 			name: 'block_id',
 			type: 'string',
 			default: '',
 			required: true,
 		},
 		{
-			displayName: '文档版本',
+			displayName: 'Document Revision ID',
 			name: 'document_revision_id',
 			type: 'number',
 			default: -1,
 			description: '查询的文档版本，-1 表示文档最新版本。',
 		},
 		{
-			displayName: '用户 ID 类型',
+			displayName: 'User ID Type',
 			name: 'user_id_type',
 			type: 'options',
 			default: 'open_id',

@@ -3,7 +3,7 @@ import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperations } from '../../../help/type/IResource';
 
 const MessageEditOperate: ResourceOperations = {
-	name: '编辑消息',
+	name: 'Edit Message',
 	value: 'message:edit',
 	options: [
 		{

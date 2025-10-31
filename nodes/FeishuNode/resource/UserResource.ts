@@ -1,7 +1,7 @@
-import {ResourceOptions} from "../../help/type/IResource";
+import { ResourceOptions } from "../../help/type/IResource";
 
 const MessageResource: ResourceOptions = {
-	name: '通讯录',
+	name: 'User',
 	value: 'user',
 };
 
