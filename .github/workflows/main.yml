@@ -1,0 +1,69 @@
+name: Build and Sync to Dist
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: "22.04"
+
+    permissions:
+      contents: write  # required to push to main
+
+    steps:
+      # 1. Checkout the development branch
+      - name: Checkout main branch
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true  # needed so push works later
+
+      # 2. Setup Node.js for building
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Build the n8n custom node (compiles TypeScript → JS)
+      - name: Build project
+        run: npm run build
+
+      # 5. Safely update the dist branch with built output
+      - name: Update dist branch with build
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Fetch latest dist branch
+          git fetch origin dist || true
+
+          # Create a temporary worktree for dist
+          git worktree add /tmp/branch-dist origin/dist || git worktree add /tmp/branch-dist -b dist
+
+          # Copy necessary build artifacts and metadata
+          rm -rf /tmp/branch-dist/dist
+          cp -r ./dist /tmp/branch-main/dist
+          cp package.json /tmp/branch-dist/package.json
+          cp package-lock.json /tmp/branch-dist/package-lock.json || true
+          cp README.md /tmp/branch-dist/README.md || true
+
+          # Commit inside the main worktree
+          cd /tmp/branch-dist
+          git add dist package.json package-lock.json README.md
+          git commit -m "Build from development: $(date -u +"%Y-%m-%d %H:%M:%S")" || echo "No changes to commit"
+
+          # Pull and push to avoid non-fast-forward errors
+          git pull --ff-only origin dist || true
+          git push origin HEAD:dist
+
+          # Clean up the temporary worktree
+          cd $GITHUB_WORKSPACE
+          git worktree remove /tmp/branch-dist || true
